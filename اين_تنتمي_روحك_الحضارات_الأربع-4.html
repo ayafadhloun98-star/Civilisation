@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1022">
+<title>أين تنتمي روحك؟ — رحلة الحضارات الأربع</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
+body{background:#070914;color:#fff;overflow-x:hidden}
+.app{max-width:760px;margin:auto;min-height:100vh;position:relative;background:#0c1024;box-shadow:0 0 100px #000}
+.screen{min-height:100vh;position:relative;overflow:hidden;padding:22px 16px 38px}
+.bg{position:absolute;inset:0;z-index:0;transition:background .7s ease}
+.bg:before{content:"";position:absolute;inset:0;background-image:radial-gradient(#fff9 1px,transparent 1px),radial-gradient(#fff6 1px,transparent 1px);background-size:95px 95px,150px 150px;opacity:.22;animation:stars 18s linear infinite}
+@keyframes stars{to{background-position:95px 110px,0 0}}
+.content{position:relative;z-index:2;max-width:620px;margin:auto}
+.card{background:linear-gradient(180deg,#11152dd9,#090c1ed9);border:1px solid #ffffff1e;border-radius:28px;padding:22px;box-shadow:0 22px 70px #0009;backdrop-filter:blur(8px)}
+h1{font-size:clamp(34px,9vw,58px);margin:7px 0;text-align:center;background:linear-gradient(90deg,#fff,#f4d39b,#d9baff,#fff);-webkit-background-clip:text;color:transparent}
+h2{font-size:30px;margin:8px 0}.center{text-align:center}.subtitle{font-size:17px;line-height:1.9;color:#d9d3e5;text-align:center}
+.orb{font-size:72px;text-align:center;filter:drop-shadow(0 0 28px #b18cff99);animation:float 3s ease-in-out infinite}@keyframes float{50%{transform:translateY(-8px)}}
+.start,.next,.share,.again{border:0;border-radius:16px;padding:15px 18px;width:100%;font:inherit;font-weight:850;cursor:pointer;margin-top:15px}.start,.next{background:linear-gradient(135deg,#e6b968,#a86fe5);color:#fff;box-shadow:0 10px 30px #0006}.share{background:#fff;color:#11142a}.again{background:#ffffff0c;color:#fff;border:1px solid #ffffff1c}
+.tags{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin:16px 0}.tag{padding:7px 10px;border-radius:99px;background:#ffffff0b;border:1px solid #ffffff15;font-size:12px}
+.disclaimer{font-size:11px;line-height:1.7;color:#a9a4b6;text-align:center;margin-top:12px}
+.hidden{display:none}.top{display:flex;justify-content:space-between;color:#ddd4e7;font-size:13px}.progress{height:7px;border-radius:8px;background:#ffffff12;margin:10px 0 20px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,#f0c879,#b78cf5);transition:.4s}
+.scene{height:230px;border-radius:24px;overflow:hidden;margin-bottom:18px;border:1px solid #ffffff20;background:#111;box-shadow:inset 0 0 60px #0008}.scene svg{width:100%;height:100%;display:block}
+.question{font-size:23px;font-weight:800;line-height:1.65;margin:12px 0 18px}.option{display:block;width:100%;padding:15px 16px;margin:9px 0;border-radius:16px;border:1px solid #ffffff18;background:#ffffff09;color:#fff;text-align:right;font:inherit;line-height:1.55;cursor:pointer;transition:.18s}.option:hover,.option.selected{background:#b991f52d;border-color:#e2c38d;transform:translateY(-1px)}
+.next:disabled{opacity:.4;cursor:not-allowed}.smalltop{color:#c5bdd1}
+.result{text-align:center}.resultIcon{font-size:85px;filter:drop-shadow(0 0 25px #fff6)}.result h2{font-size:36px}.result p{line-height:2;color:#e2dceb;text-align:right}.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}.stat{text-align:right;padding:13px;border-radius:15px;background:#ffffff09;border:1px solid #ffffff12}.stat b{display:block;color:#efcf91;margin-bottom:5px}.scores{margin-top:18px;text-align:right}.score{margin:8px 0}.scoreline{height:8px;background:#ffffff12;border-radius:9px;overflow:hidden}.scorefill{height:100%;background:linear-gradient(90deg,#f1cc83,#b98bf4);border-radius:9px}
+.gate{font-size:12px;color:#d6c9e3;text-align:center;margin-bottom:8px}
+</style>
+</head>
+<body>
+<div class="app"><div class="screen" id="screen"><div class="bg" id="bg"></div>
+<div class="content">
+
+<section id="home" class="card">
+<div class="orb">𓂀</div>
+<h1>أين تنتمي روحك؟</h1>
+<p class="subtitle">رحلة غامضة عبر أربع حضارات قديمة.<br>20 سؤالًا… 20 بوابة… وفي النهاية ستكتشف أي حضارة رمزية تشبه روحك أكثر.</p>
+<div class="tags"><span class="tag">𓂀 مصر القديمة</span><span class="tag">🌊 أتلانتس</span><span class="tag">𒀭 بابل</span><span class="tag">🪷 الهند القديمة</span></div>
+<button class="start" onclick="start()">✨ افتح البوابة الأولى</button>
+<p class="disclaimer">اللعبة رمزية وتأملية. أتلانتس هنا بوصفها أسطورة/حضارة متخيلة في التراث الفلسفي، وليست حضارة مثبتة أثريًا.</p>
+</section>
+
+<section id="quiz" class="hidden">
+<div class="gate" id="gate"></div>
+<div class="scene" id="scene"></div>
+<div class="top"><span id="qnum"></span><span id="pct"></span></div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div class="card">
+<div class="question" id="question"></div><div id="options"></div>
+<button class="next" id="next" disabled onclick="go()">التالي إلى البوابة التالية ←</button>
+</div>
+</section>
+
+<section id="result" class="card hidden result">
+<div class="resultIcon" id="resultIcon"></div><h2 id="resultTitle"></h2>
+<p id="resultText"></p>
+<div class="stats" id="stats"></div>
+<div class="scores" id="scores"></div>
+<button class="share" onclick="shareResult()">📤 مشاركة نتيجتي</button>
+<button class="again" onclick="start()">🔄 إعادة الرحلة</button>
+</section>
+
+</div></div></div>
+<script>
+const civ={
+egypt:{name:"مصر القديمة",icon:"𓂀",color:"#c89a48",mission:"الحكمة، التوازن، والعبور بين مراحل الحياة",text:"تميل روحك الرمزية إلى النظام والمعنى والبحث عن الحكمة خلف الظاهر. يجذبك ما يربط الحياة بالموت، والسماء بالأرض، والإنسان بما هو أبعد منه."},
+atlantis:{name:"أتلانتس",icon:"🌊",color:"#75cbe6",mission:"الحدس، المعرفة، والبحث عن العالم المفقود",text:"تجذبك الأسئلة التي لا تملك إجابات سهلة. في عالمك الداخلي، البحر ليس نهاية الطريق بل بوابة. تحب الحرية والخيال واكتشاف ما وراء المألوف."},
+babylon:{name:"بابل",icon:"𒀭",color:"#d59b70",mission:"النجوم، المعرفة، الطموح، وبناء المعنى",text:"روحك الرمزية تحب مراقبة السماء وفهم الأنماط وصنع شيء يبقى. لديك فضول تجاه الزمن والقدر والحضارة، وتنجذب إلى المدن التي تجمع العلم والأسطورة."},
+india:{name:"الهند القديمة",icon:"🪷",color:"#d9a6df",mission:"التأمل، الوعي، والتحول الداخلي",text:"تميل روحك الرمزية إلى الداخل. السؤال الذي يهمك ليس فقط: ماذا يحدث؟ بل: من الذي يلاحظ ما يحدث؟ تنجذب إلى التأمل، الوحدة، الرحلة الداخلية، والتحول."}
+};
+
+const scenes={
+egypt:`<svg viewBox="0 0 800 360" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="e" x2="0" y2="1"><stop stop-color="#161d42"/><stop offset=".55" stop-color="#704b5c"/><stop offset="1" stop-color="#151020"/></linearGradient><radialGradient id="sun"><stop stop-color="#ffe5a0"/><stop offset="1" stop-color="#d58d4c00"/></radialGradient></defs><rect width="800" height="360" fill="url(#e)"/><circle cx="610" cy="105" r="90" fill="url(#sun)"/><circle cx="610" cy="105" r="35" fill="#f6d28a"/><path d="M0 300L190 95 380 300Z" fill="#c09256"/><path d="M190 95L380 300H350Z" fill="#77523f"/><path d="M255 300L430 155 605 300Z" fill="#ad7c4c"/><path d="M430 155L605 300H575Z" fill="#69493e"/><path d="M0 315H800V360H0Z" fill="#0b0b18"/><path d="M70 305V225h35v80m35 0v-95h35v95m35 0v-70h35v70" fill="#25192a"/><circle cx="160" cy="70" r="2" fill="#fff"/><circle cx="240" cy="45" r="2" fill="#fff"/><circle cx="350" cy="85" r="2" fill="#fff"/></svg>`,
+atlantis:`<svg viewBox="0 0 800 360" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="a" x2="0" y2="1"><stop stop-color="#102d52"/><stop offset=".55" stop-color="#236c86"/><stop offset="1" stop-color="#07121f"/></linearGradient></defs><rect width="800" height="360" fill="url(#a)"/><circle cx="650" cy="75" r="50" fill="#bdeaff" opacity=".45"/><circle cx="650" cy="75" r="28" fill="#d9f4ff" opacity=".8"/><path d="M0 285Q200 245 400 285T800 275V360H0Z" fill="#061522"/><g fill="none" stroke="#aee9ee" stroke-width="12" opacity=".65"><circle cx="400" cy="230" r="125"/><circle cx="400" cy="230" r="85"/><circle cx="400" cy="230" r="45"/></g><path d="M325 240V145l40-35 35 35v95m75 0V150l40-40 40 40v90" fill="#6bc4d2" opacity=".55"/><path d="M0 160Q90 120 180 160T360 160T540 160T800 160" fill="none" stroke="#9be9ee" stroke-width="3" opacity=".4"/></svg>`,
+babylon:`<svg viewBox="0 0 800 360" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="b" x2="0" y2="1"><stop stop-color="#17142d"/><stop offset=".6" stop-color="#633f54"/><stop offset="1" stop-color="#100d18"/></linearGradient></defs><rect width="800" height="360" fill="url(#b)"/><circle cx="120" cy="75" r="28" fill="#f1d48d"/><path d="M0 305H800V360H0Z" fill="#0a0a12"/><path d="M120 305V265h560v40H120Zm70-40v-45h420v45H190Zm70-45v-45h280v45H260Zm70-45v-55h140v55H330Z" fill="#b77b61"/><path d="M395 120V305" stroke="#e4aa72" stroke-width="8"/><g fill="#e6b37b"><circle cx="210" cy="205" r="5"/><circle cx="250" cy="205" r="5"/><circle cx="550" cy="205" r="5"/><circle cx="590" cy="205" r="5"/></g><path d="M0 155Q100 125 200 155T400 155T600 155T800 155" fill="none" stroke="#d5a477" opacity=".35"/></svg>`,
+india:`<svg viewBox="0 0 800 360" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="i" x2="0" y2="1"><stop stop-color="#271442"/><stop offset=".55" stop-color="#8a4e70"/><stop offset="1" stop-color="#130c1c"/></linearGradient></defs><rect width="800" height="360" fill="url(#i)"/><circle cx="620" cy="90" r="55" fill="#ffdca1" opacity=".65"/><path d="M0 310Q200 230 400 300T800 285V360H0Z" fill="#0d0b17"/><path d="M300 305V205l100-95 100 95v100Z" fill="#bd7a72"/><path d="M270 205h260l-30-25H300Z" fill="#e0a16f"/><path d="M340 205v100m60-100v100m60-100v100" stroke="#f2bc86" stroke-width="10"/><circle cx="400" cy="75" r="35" fill="none" stroke="#f2c77f" stroke-width="3" opacity=".7"/><path d="M365 75h70M400 40v70" stroke="#f2c77f" opacity=".55"/></svg>`
+};
+
+const qs=[
+["بعد سنوات من البحث تصل إلى بوابة حجرية. لا تسأل البوابة عن اسمك؛ تسألك: «ماذا تريد أن تعرف؟»",["لماذا وُجدت؟","ماذا يوجد خلف المجهول؟","كيف أغيّر قدري؟","من أكون عندما يسكت العالم؟"],"egypt","atlantis","babylon","india"],
+["يُعرض عليك صندوق يحتوي حقيقة واحدة عن حياتك. لكنها حقيقة قد تغيّر كل شيء. هل تفتحه؟",["نعم، فالحقيقة أثمن من الراحة.","إذا شعرت أن قلبي مستعد لها.","نعم، حتى لو كانت مؤلمة؛ سأتعلم منها.","أفتح الصندوق فقط إذا كان سيقودني إلى وعي أعمق."],"egypt","atlantis","babylon","india"],
+["أنت تحت سماء مليئة بالنجوم، ويبدو لك أن واحدة منها تنظر إليك. ما أول ما تشعر به؟",["أن للوجود نظامًا أريد فهمه.","أن هناك شيئًا أكبر من حدودي.","أن السماء تحمل خرائط لمن يقرأها.","أن الناظر الحقيقي ليس عيني بل وعيي."],"egypt","atlantis","babylon","india"],
+["تصل إلى مدينة غارقة تحت البحر. أمامك قاعة مضيئة لم تمسها المياه. ماذا تفعل؟",["أبحث عن الرموز التي تشرح تاريخها.","أدخل دون خوف؛ أشعر أن المكان يعرفني.","أحاول فهم كيف بُنيت ولماذا اختفت.","أجلس أولًا وأراقب ما يحدث في داخلي."],"atlantis","atlantis","babylon","india"],
+["شيخ مجهول يقول لك: «كل إنسان يحمل بابًا إلى عالم آخر». أين تبحث عن بابك؟",["في أسرار الماضي والحكمة القديمة.","في حدسي وأحلامي.","في العلم والمعرفة والنجوم.","في الصمت والتأمل."],"egypt","atlantis","babylon","india"],
+["أمامك أربعة أنهار رمزية. أي ماء تشعر أنه يناديك؟",["نهر يحمل ذاكرة الأجداد.","ماء عميق لا ترى قاعه.","نهر يعكس النجوم.","ماء هادئ كمرآة للوعي."],"egypt","atlantis","babylon","india"],
+["لو استطعت أن تتحدث مع شخص من الماضي، ماذا تسأله؟",["كيف فهموا الموت والحياة؟","ماذا أخفوا عن العالم؟","كيف قرأوا السماء؟","كيف عرفوا أنفسهم؟"],"egypt","atlantis","babylon","india"],
+["أمامك معبد لا يسمح بالدخول إلا لمن يترك شيئًا عند الباب. ماذا تترك؟",["خوفي من الموت.","حاجتي إلى امتلاك كل الإجابات.","غروري بمعرفة كل شيء.","الصورة التي أحاول أن أبدو بها أمام الناس."],"egypt","atlantis","babylon","india"],
+["أي نوع من الأسرار يجذبك؟",["أسرار الروح والعبور.","أسرار المدن المفقودة.","أسرار النجوم والزمن.","أسرار الوعي والنفس."],"egypt","atlantis","babylon","india"],
+["تجد خريطة بلا أسماء. في وسطها علامة واحدة فقط. ماذا تفعل؟",["أبحث عن رموز تساعدني على تفسيرها.","أتبع الإحساس الذي تقودني إليه.","أقارنها بالسماء والاتجاهات.","أغلق الخريطة وأسأل نفسي لماذا أريد الوصول."],"egypt","atlantis","babylon","india"],
+["يقال لك: «ليست كل حضارة تُقاس بما بنته، بل بما فهمته». ما الذي تعتبره أعظم إنجاز؟",["أن يتعلم الإنسان كيف يعبر الخوف من الموت.","أن يحافظ على حريته وفضوله.","أن يفهم الزمن والسماء.","أن يعرف نفسه."],"egypt","atlantis","babylon","india"],
+["في حلم غامض ترى أربعة رموز: عين، موجة، نجمة، زهرة. أيها تلمس؟",["العين — لأرى ما وراء الظاهر.","الموجة — لأتبع ما لا يمكن الإمساك به.","النجمة — لأفهم الخريطة.","الزهرة — لأعود إلى داخلي."],"egypt","atlantis","babylon","india"],
+["يقول لك حارس بوابة: «أكبر قوة يمكن أن تمتلكها هي…»",["أن تتذكر من أنت.","أن تظل حرًا أمام المجهول.","أن تعرف كيف تتعلم من السماء والأرض.","أن تسيطر على نفسك قبل أن تحاول السيطرة على العالم."],"egypt","atlantis","babylon","india"],
+["لو عشت يومًا واحدًا في حضارة قديمة، ما الذي تبحث عنه أولًا؟",["طقوس المعابد ورموزها.","المدن والمياه والأسرار المخفية.","المراصد والكتب والأسواق.","المعابد والتأمل وتعاليم الحكماء."],"egypt","atlantis","babylon","india"],
+["يُطلب منك الاختيار بين المجد والمعرفة والسلام. ماذا تختار؟",["المعرفة التي تمنح الحياة معنى.","الحرية التي تجعلني أعيش تجربتي.","المعرفة؛ لأنها تجعل المجد بلا قيمة.","السلام الداخلي؛ لأنه لا يحتاج جمهورًا."],"egypt","atlantis","babylon","india"],
+["عندما تفقد شيئًا تحبه، ما السؤال الذي يعود إليك؟",["ما الذي يريد هذا الفقد أن يعلّمني إياه؟","إلى أين يقودني هذا التغيير؟","ما الخطأ الذي يجب أن أفهمه؟","ما الجزء مني الذي كنت أعلّقه على هذا الشيء؟"],"egypt","atlantis","babylon","india"],
+["أمامك ساعة رملية. كل حبة تسقط معها ذكرى. ماذا تفعل؟",["أحفظ المعنى بدل محاولة إيقاف الزمن.","أدع الذكريات تعبرني دون التعلق بها.","أدرس نمطها لأفهم مساري.","أراقبها دون مقاومة وأعود إلى اللحظة."],"egypt","atlantis","babylon","india"],
+["تكتشف أن المدينة التي تبحث عنها قد لا تكون موجودة أصلًا. هل تستمر؟",["نعم؛ أحيانًا تكون الرحلة نفسها حكمة.","نعم؛ المجهول يستحق أن يُبحث عنه.","أحوّل البحث إلى سؤال علمي جديد.","أتوقف وأسأل: ماذا كنت أبحث عنه في المدينة أصلًا؟"],"egypt","atlantis","babylon","india"],
+["لو استطعت أن تحمل من حضارة قديمة شيئًا واحدًا إلى عالمك اليوم، ماذا تحمل؟",["حكمة الرموز وفكرة التوازن.","روح المغامرة والخيال.","شغف المعرفة ومراقبة السماء.","فن التأمل ومعرفة الذات."],"egypt","atlantis","babylon","india"],
+["في نهاية الرحلة، أمامك أربعة أبواب. أي باب تفتحه؟",["باب العين الذهبية: «تذكّر من كنت.»","باب البحر الأزرق: «اكتشف ما وراء المجهول.»","باب النجمة: «اقرأ ما كتبته السماء.»","باب اللوتس: «اعرف من ينظر من خلال عينيك.»"],"egypt","atlantis","babylon","india"]
+];
+
+let idx=0,selected=null,answers=[];
+function setBg(key){bg.style.background={egypt:"radial-gradient(circle at 50% 10%,#6e4b55,#18182f 52%,#070914 100%)",atlantis:"radial-gradient(circle at 50% 15%,#276c86,#0d2a48 48%,#050b17 100%)",babylon:"radial-gradient(circle at 50% 10%,#714755,#241a35 52%,#080813 100%)",india:"radial-gradient(circle at 50% 10%,#89516d,#351b4a 52%,#090713 100%)"}[key]}
+function scene(key){return scenes[key]}
+function start(){idx=0;selected=null;answers=[];home.classList.add("hidden");result.classList.add("hidden");quiz.classList.remove("hidden");render()}
+function render(){
+ const q=qs[idx]; gate.textContent=["𓂀 بوابة وادي النيل","🌊 بوابة المدينة الغارقة","𒀭 بوابة بلاد الرافدين","🪷 بوابة المعبد الداخلي"][idx%4];
+ const theme=q[2+(idx%4)]; setBg(theme); scene.innerHTML=scenes[theme];
+ qnum.textContent=`السؤال ${idx+1} من 20`;pct.textContent=Math.round(idx/20*100)+"%";bar.style.width=idx/20*100+"%";question.textContent=q[0];options.innerHTML="";
+ for(let k=0;k<4;k++){let b=document.createElement("button");b.className="option";b.textContent=["A","B","C","D"][k]+" — "+q[1][k];b.onclick=()=>{document.querySelectorAll(".option").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");selected=q[2+k];next.disabled=false};options.appendChild(b)}
+ next.disabled=true;next.textContent=idx===19?"✨ اكشف الحضارة التي تنادي روحك":"التالي إلى البوابة التالية ←";
+}
+function go(){if(!selected)return;answers.push(selected);selected=null;if(idx<19){idx++;render()}else finish()}
+function finish(){
+ let c={egypt:0,atlantis:0,babylon:0,india:0};answers.forEach(x=>c[x]++);
+ let key=Object.entries(c).sort((a,b)=>b[1]-a[1])[0][0],r=civ[key];
+ quiz.classList.add("hidden");result.classList.remove("hidden");setBg(key);
+ resultIcon.textContent=r.icon;resultTitle.textContent="روحك الرمزية أقرب إلى "+r.name;
+ resultText.textContent=r.text;
+ stats.innerHTML=`<div class="stat"><b>رسالتك</b>${r.mission}</div><div class="stat"><b>ميلك الداخلي</b>${key==="egypt"?"الحكمة والتوازن":key==="atlantis"?"الحرية والحدس":key==="babylon"?"المعرفة والنجوم":"الوعي والتحول"}</div>`;
+ scores.innerHTML=Object.entries(c).map(([k,v])=>`<div class="score"><div>${civ[k].icon} ${civ[k].name} — ${v}/20</div><div class="scoreline"><div class="scorefill" style="width:${v/20*100}%"></div></div></div>`).join("");
+ window.last=`🌙 نتيجتي في «أين تنتمي روحك؟»: ${r.icon} ${r.name} — ${r.mission}`;
+}
+async function shareResult(){if(navigator.share){try{await navigator.share({title:"أين تنتمي روحك؟",text:window.last})}catch(e){}}else{await navigator.clipboard?.writeText(window.last);alert("تم نسخ النتيجة ✨")}}
+</script>
+</body>
+</html>
